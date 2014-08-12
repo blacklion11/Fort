@@ -1,9 +1,8 @@
 
-
-import org.newdawn.slick.state.*;
+import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import states.*;
+import states.GameState;
 
 public class Core extends StateBasedGame
 {
