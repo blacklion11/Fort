@@ -3,6 +3,7 @@
 import org.newdawn.slick.state.*;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import states.*;
 
 public class Core extends StateBasedGame
 {
@@ -27,5 +28,7 @@ public class Core extends StateBasedGame
 		gc.setAlwaysRender(true);
 		gc.setShowFPS(true);
 		gc.setVSync(true);
+		
+		this.addState(new GameState());
 	}
 }
