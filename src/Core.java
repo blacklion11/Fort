@@ -2,7 +2,7 @@
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import states.GameState;
+import states.*;
 
 public class Core extends StateBasedGame
 {
@@ -29,5 +29,6 @@ public class Core extends StateBasedGame
 		gc.setVSync(true);
 		
 		this.addState(new GameState());
+		//this.addState(new StartMenuState());
 	}
 }
