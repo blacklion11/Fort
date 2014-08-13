@@ -39,16 +39,16 @@ public class TileMap
 				switch(seed)
 				{
 					case 0:
-						tiles[i][j].setColor(java.awt.Color.BLACK);
+						tiles[i][j].setColor(Tile.BROWN);
 						break;
 					case 1:
-						tiles[i][j].setColor(java.awt.Color.GRAY);
+						tiles[i][j].setColor(Tile.GRAY);
 						break;
 					case 2:
-						tiles[i][j].setColor(java.awt.Color.GREEN);
+						tiles[i][j].setColor(Tile.GREEN);
 						break;
 					case 3:
-						tiles[i][j].setColor(java.awt.Color.BLUE);
+						tiles[i][j].setColor(Tile.BLUE);
 				
 				}
 			}
@@ -61,7 +61,7 @@ public class TileMap
 		{
 			for(int j = 0; j < tiles[0].length; j++)
 			{
-				g.setColor(new Color(tiles[i][j].color.getRed(), tiles[i][j].color.getGreen(), tiles[i][j].color.getBlue()));
+				g.setColor(tiles[i][j].color);
 				g.fillRect((float)(i * TILESIZE), (float) (j * TILESIZE), (float) ((i*TILESIZE) + TILESIZE), (float) ((j*TILESIZE) + TILESIZE));
 			}	
 		}
