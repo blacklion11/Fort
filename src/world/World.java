@@ -1,6 +1,7 @@
 package world;
 
 import org.newdawn.slick.Graphics;
+import world.gen.WorldGenerator;
 
 public class World
 {

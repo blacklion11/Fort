@@ -1,6 +1,7 @@
 package world.gen;
 
 import java.util.Random;
+import java.util.ArrayList;
 
 public class WorldGenerator
 {
@@ -12,22 +13,28 @@ public class WorldGenerator
 	}
 	
 	
-	public void generateMap(int mapSize)
+	public int[][] generateMap(int mapSize)
 	{
 		int iterations = 0;
 		
 		switch(mapSize)
 		{
 			case 1:
+				iterations = 3;
 				break;
 			case 2:
+				iterations = 5;
 				break;
 			case 3:
+				iterations = 7;
 				break;
 		}
 		
+		String seed = generateSeed();
 		
+		ArrayList<Integer> mapList = new ArrayList<Integer>();
 		
+		return null;
 	}
 	
 	private String generateSeed()
@@ -45,7 +52,11 @@ public class WorldGenerator
 		return seed;
 	}
 
+	private ArrayList<Integer> diamondSquare(ArrayList<Integer> map)
+	{
 	
+		return null;
+	}
 	
 	
 	
