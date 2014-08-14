@@ -41,6 +41,8 @@ public class WorldGenerator
 		seed += r.nextInt(100);
 		
 		System.out.println(seed);
+		
+		return seed;
 	}
 
 	
