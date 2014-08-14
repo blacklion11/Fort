@@ -6,12 +6,13 @@ public class World
 {
 	
 	TileMap tilemap;
+	WorldGenerator worldGen;
 	
 	
 	public World()
 	{
 		tilemap = new TileMap(15);
-		
+		worldGen = new WorldGenerator();
 	}
 	
 	public void loadTileset(String s)
@@ -21,7 +22,7 @@ public class World
 	
 	public void generateMap()
 	{
-		tilemap.generateTileMap();
+		worldGen.generateMap(2);
 	}
 
 	

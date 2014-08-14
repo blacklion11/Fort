@@ -14,42 +14,33 @@ public class TileMap
 	
 	public TileMap(int tilesize)
 	{
-		tiles = new Tile[100][60];
-		
-		for(int i = 0; i < tiles.length; i++)
-		{
-			for(int j = 0; j < tiles[0].length; j++)
-			{
-				tiles[i][j] = new Tile();
-			}
-		}
-		
 		this.TILESIZE = tilesize;
 	
 	}
 	
-	public void generateTileMap()
+	public void setTiles(int[][] map)
 	{
-		Random r = new Random();
+		tiles = new Tile[map.length][map[0].length];
+		
 		for(int i = 0; i < tiles.length; i++)
 		{
 			for(int j = 0; j < tiles[0].length; j++)
 			{	
-				int seed = r.nextInt(4);
-				switch(seed)
+				if(map[i][j] <= 25)
 				{
-					case 0:
-						tiles[i][j].setColor(Tile.BROWN);
-						break;
-					case 1:
-						tiles[i][j].setColor(Tile.GRAY);
-						break;
-					case 2:
-						tiles[i][j].setColor(Tile.GREEN);
-						break;
-					case 3:
-						tiles[i][j].setColor(Tile.BLUE);
-				
+					tiles[i][j] = new Tile(Tile.WHITE, 0);
+				}
+				if(map[i][j] > 25 && map[i][j] <= 50)
+				{
+					tiles[i][j] = new Tile(Tile.BLUE, 1);
+				}
+				if(map[i][j] > 50 && map[i][j] <= 75)
+				{
+					tiles[i][j] = new Tile(Tile.GREEN, 2);
+				}
+				if(map[i][j] > 75 && map[i][j] <= 99)
+				{
+					tiles[i][j] = new Tile(Tile.BROWN, 3);
 				}
 			}
 		}
