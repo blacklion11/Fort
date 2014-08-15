@@ -45,8 +45,12 @@ public class WorldGenerator
 		
 		for(int i = 0; i < mapList.size(); i++)
 		{
-			System.out.print(mapList.get(0).get(i) + ", ");
+			for(int j = 0; j < mapList.get(0).size() - 1; j++)
+			{
+				System.out.print(mapList.get(i).get(j) + ", ");
+			}
 		}
+		
 		System.out.println();
 		
 		mapList = diamondSquare(mapList);
@@ -90,7 +94,7 @@ public class WorldGenerator
 		{
 			for(int j = 0; j < lengthY - 1; j++)
 			{
-				map.get(i).add(i + 1, (map.get(i).get(j).intValue() + map.get(i + 1).get(j).intValue()) / 2);
+				map.get(i).add(i, (map.get(i).get(j).intValue() + map.get(i).get(j + 1).intValue()) / 2);
 			}
 		}
 	
