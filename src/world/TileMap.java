@@ -28,19 +28,23 @@ public class TileMap
 			{	
 				if(map[i][j] <= 25)
 				{
-					tiles[i][j] = new Tile(Tile.WHITE, 0);
+					tiles[i][j] = new Tile(Tile.BLUE, Tile.WATER);
 				}
-				if(map[i][j] > 25 && map[i][j] <= 50)
+				if(map[i][j] > 25 && map[i][j] <= 35)
 				{
-					tiles[i][j] = new Tile(Tile.BLUE, 1);
+					tiles[i][j] = new Tile(Tile.YELLOW, Tile.SAND);
 				}
-				if(map[i][j] > 50 && map[i][j] <= 75)
+				if(map[i][j] > 35 && map[i][j] <= 60)
 				{
-					tiles[i][j] = new Tile(Tile.GREEN, 2);
+					tiles[i][j] = new Tile(Tile.GREEN, Tile.GRASS);
 				}
-				if(map[i][j] > 75 && map[i][j] <= 99)
+				if(map[i][j] > 60 && map[i][j] <= 80)
 				{
-					tiles[i][j] = new Tile(Tile.BROWN, 3);
+					tiles[i][j] = new Tile(Tile.BROWN, Tile.DIRT);
+				}
+				if(map[i][j] > 80)
+				{
+					tiles[i][j] = new Tile(Tile.GRAY, Tile.STONE);
 				}
 			}
 		}

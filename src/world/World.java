@@ -23,7 +23,7 @@ public class World
 	
 	public void generateMap()
 	{
-		worldGen.generateMap(2);
+		tilemap.setTiles(worldGen.generateMap(2));
 	}
 
 	

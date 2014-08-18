@@ -11,6 +11,8 @@ public class Tile
 	public static final int DIRT = 1;
 	public static final int GRASS = 2;
 	public static final int WATER = 3;
+	public static final int STONE = 4;
+	public static final int SAND = 5; 
 	
 	public static int ID;
 	
@@ -25,6 +27,7 @@ public class Tile
 	public static Color GREEN;
 	public static Color GRAY;
 	public static Color BROWN;
+	public static Color YELLOW;
 	
 	public Color color; 
 	
@@ -57,6 +60,7 @@ public class Tile
 		GREEN = Color.green;
 		GRAY = Color.gray;
 		BROWN = new Color(87,59,12);
+		YELLOW = Color.yellow;
 	}
 	
 	

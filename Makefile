@@ -1,4 +1,4 @@
-all: core
+`all: core
 
 worldgen:= $(wildcard src/world/gen/*.java)
 

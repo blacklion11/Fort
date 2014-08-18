@@ -6,7 +6,8 @@ import java.util.Random;
 public class WorldGenerator
 {
 
-
+	int smooth = 8;
+	
 	public WorldGenerator()
 	{
 		
@@ -22,13 +23,13 @@ public class WorldGenerator
 		switch(mapSize)
 		{
 			case 1:
-				map = new int[9][9];
-				break;
-			case 2:
 				map = new int[33][33];
 				break;
+			case 2:
+				map = new int[65][65];
+				break;
 			case 3:
-				map = new int[513][513];
+				map = new int[257][257];
 				break;
 		}
 		
@@ -40,13 +41,6 @@ public class WorldGenerator
 		map[0][map[0].length - 1] = Integer.parseInt(seed.substring(2,4));
 		map[map.length - 1][0] = Integer.parseInt(seed.substring(4,6));
 		map[map.length - 1][map[0].length - 1] = Integer.parseInt(seed.substring(6,8));
-		
-		/*
-		map[0][0] = 64;
-		map[0][map[0].length - 1] = 64;
-		map[map.length - 1][0] = 64;
-		map[map.length - 1][map[0].length - 1] = 64;
-		*/
 		
 		map = fillHeight(map);
 		
@@ -111,25 +105,25 @@ public class WorldGenerator
 	{
 		if(y - length == 0)
 		{
-			map[y-length][x] = (map[y][x]    +   map[y - length][x - length]    +   map[y - length][x + length]) / 3;
+			map[y-length][x] = (map[y][x]    +   map[y - length][x - length]    +   map[y - length][x + length]) / 3 + random();
 		}
 		if(y + length == map.length - 1)
 		{
-			map[y+length][x] = (map[y][x]    +   map[y + length][x - length]    +   map[y + length][x + length]) / 3;
+			map[y+length][x] = (map[y][x]    +   map[y + length][x - length]    +   map[y + length][x + length]) / 3 + random();
 		}else
 		{
-			map[y + length][x] = (map[y][x]    +    map[y + length][x - length]    +    map[y + length][x + length]    +    map[y + 2 * length][x]) / 4;
+			map[y + length][x] = (map[y][x]    +    map[y + length][x - length]    +    map[y + length][x + length]    +    map[y + 2 * length][x]) / 4 + random();
 		}
 		if(x - length == 0)
 		{
-			map[y][x - length] = (map[y][x]    +   map[y - length][x - length]    +   map[y + length][x - length]) / 3;
+			map[y][x - length] = (map[y][x]    +   map[y - length][x - length]    +   map[y + length][x - length]) / 3 + random();
 		}
 		if(x + length == map[0].length - 1)
 		{
-			map[y][x + length] = (map[y][x]    +   map[y - length][x + length]    +   map[y + length][x + length]) / 3;
+			map[y][x + length] = (map[y][x]    +   map[y - length][x + length]    +   map[y + length][x + length]) / 3 + random();
 		}else
 		{
-			map[y][x + length] = (map[y][x]    +    map[y - length][x - length]    +    map[y + length][x + length]    +    map[y][x + 2 * length]) / 4;
+			map[y][x + length] = (map[y][x]    +    map[y - length][x - length]    +    map[y + length][x + length]    +    map[y][x + 2 * length]) / 4 + random();
 		}
 		
 	
@@ -141,16 +135,36 @@ public class WorldGenerator
 	private int[][] square(int[][] map, int x, int y, int length)
 	{
 		
-		System.out.println("Test: " + x + ", " + y);
-		System.out.println("\tUpperLeft: " + (x - (length / 2)) + ", " + (y - (length / 2)));
-		map[y - length / 2][x - length / 2] = (map[y - length][x]    +    map[y][x - length]) / 2;
-		map[y - length / 2][x + length / 2] = (map[y - length][x]    +    map[y][x + length]) / 2;
-		map[y + length / 2][x - length / 2] = (map[y][x - length]    +    map[y + length][x]) / 2;
-		map[y + length / 2][x + length / 2] = (map[y + length][x]    +    map[y][x + length]) / 2;
+		//System.out.println("Test: " + x + ", " + y);
+		//System.out.println("\tUpperLeft: " + (x - (length / 2)) + ", " + (y - (length / 2)));
+		map[y - length / 2][x - length / 2] = (map[y - length][x]    +    map[y][x - length]) / 2 + random();
+		map[y - length / 2][x + length / 2] = (map[y - length][x]    +    map[y][x + length]) / 2 + random();
+		map[y + length / 2][x - length / 2] = (map[y][x - length]    +    map[y + length][x]) / 2 + random();
+		map[y + length / 2][x + length / 2] = (map[y + length][x]    +    map[y][x + length]) / 2 + random();
 		
 		return map;
 	}
 	
+	
+	public int random()
+	{
+		Random r = new Random();
+		int one = r.nextInt(100);
+		return (one - r.nextInt(100)) / smooth;
+	}
+	
+	public int[][] smooth(int[][] map, int passes)
+	{
+		for(int i = 0; i < map.length; i++)
+		{
+			for(int j = 0; j < map[0].length; j++)
+			{
+				
+			}
+		}
+		
+		return map;
+	}
 	
 	private String generateSeed()
 	{
