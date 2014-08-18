@@ -26,15 +26,15 @@ public class TileMap
 		{
 			for(int j = 0; j < tiles[0].length; j++)
 			{	
-				if(map[i][j] <= 25)
+				if(map[i][j] <= 35)
 				{
 					tiles[i][j] = new Tile(Tile.BLUE, Tile.WATER);
 				}
-				if(map[i][j] > 25 && map[i][j] <= 35)
+				if(map[i][j] > 35 && map[i][j] <= 200)
 				{
-					tiles[i][j] = new Tile(Tile.YELLOW, Tile.SAND);
+					tiles[i][j] = new Tile(Tile.BROWN, Tile.DIRT);
 				}
-				if(map[i][j] > 35 && map[i][j] <= 60)
+				/*if(map[i][j] > 35 && map[i][j] <= 60)
 				{
 					tiles[i][j] = new Tile(Tile.GREEN, Tile.GRASS);
 				}
@@ -46,6 +46,7 @@ public class TileMap
 				{
 					tiles[i][j] = new Tile(Tile.GRAY, Tile.STONE);
 				}
+				*/
 			}
 		}
 	}

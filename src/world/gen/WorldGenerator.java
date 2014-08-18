@@ -1,12 +1,13 @@
 package world.gen;
 
 import java.util.Random;
+import world.World;
 
 
 public class WorldGenerator
 {
 
-	int smooth = 8;
+	int smooth = 10;
 	
 	public WorldGenerator()
 	{
@@ -29,22 +30,25 @@ public class WorldGenerator
 				map = new int[65][65];
 				break;
 			case 3:
-				map = new int[257][257];
+				map = new int[129][129];
 				break;
 		}
 		
 		
 		String seed = generateSeed();
-		
+		seed = "20457052";
 	
 		map[0][0] = Integer.parseInt(seed.substring(0,2));
 		map[0][map[0].length - 1] = Integer.parseInt(seed.substring(2,4));
 		map[map.length - 1][0] = Integer.parseInt(seed.substring(4,6));
 		map[map.length - 1][map[0].length - 1] = Integer.parseInt(seed.substring(6,8));
 		
-		map = fillHeight(map);
+		 map = fillHeight(map);
+		map = smooth(smooth(smooth(smooth(smooth(map)))));
 		
-		/// Debug Array Contents
+		
+		// Debug Array Contents
+		
 		System.out.println("-------------------------------------------------------------");
 		for(int i = 0; i < map.length; i++)
 		{
@@ -57,6 +61,7 @@ public class WorldGenerator
 		}
 		System.out.println("-------------------------------------------------------------");
 		
+		
 		return map;
 	}
 	
@@ -67,7 +72,7 @@ public class WorldGenerator
 		int length = map.length / 2;
 		
 		//fill center tile
-		map[(map.length - 1) / 2][(map[0].length - 1) /  2] = (map[0][0] + map[0][map[0].length - 1] + map[map.length - 1][0] + map[map.length - 1][map[0].length - 1]) / 4; 
+		map[(map.length - 1) / 2][(map[0].length - 1) /  2] = (map[0][0] + map[0][map[0].length - 1] + map[map.length - 1][0] + map[map.length - 1][map[0].length - 1]) / 4 + random(); 
 		
 		while (length > 0)
 		{
@@ -137,10 +142,10 @@ public class WorldGenerator
 		
 		//System.out.println("Test: " + x + ", " + y);
 		//System.out.println("\tUpperLeft: " + (x - (length / 2)) + ", " + (y - (length / 2)));
-		map[y - length / 2][x - length / 2] = (map[y - length][x]    +    map[y][x - length]) / 2 + random();
-		map[y - length / 2][x + length / 2] = (map[y - length][x]    +    map[y][x + length]) / 2 + random();
-		map[y + length / 2][x - length / 2] = (map[y][x - length]    +    map[y + length][x]) / 2 + random();
-		map[y + length / 2][x + length / 2] = (map[y + length][x]    +    map[y][x + length]) / 2 + random();
+		map[y - length / 2][x - length / 2] = (map[y - length][x - length]    +    map[y - length][x]    +    map[y][x - length]    +    map[x][y]) / 4;
+		map[y - length / 2][x + length / 2] = (map[y - length][x]    +    map[y - length][x + length]    +    map[y][x + length]    +    map[x][y]) / 4;
+		map[y + length / 2][x - length / 2] = (map[y][x - length]    +    map[y + length][x - length]    +    map[y + length][x]    +    map[x][y]) / 4;
+		map[y + length / 2][x + length / 2] = (map[y][x + length]    +    map[y + length][x]    +    map[y + length][x + length]    +    map[x][y]) / 4;
 		
 		return map;
 	}
@@ -153,13 +158,65 @@ public class WorldGenerator
 		return (one - r.nextInt(100)) / smooth;
 	}
 	
-	public int[][] smooth(int[][] map, int passes)
+	public int[][] smooth(int[][] map)
 	{
-		for(int i = 0; i < map.length; i++)
+		
+		//map = heightBump(map);
+		
+		for(int i = 0; i < map.length - 1; i++)
 		{
-			for(int j = 0; j < map[0].length; j++)
+			for(int j = 0; j < map[0].length - 1; j++)
 			{
 				
+				if((i == 0 && j == 0) || (i == map.length - 1 && j == 0) || (i == 0 && j == map[0].length - 1) || (i == map.length -1 && j == map[0].length -1))
+				{
+					break;
+				}
+				else if(i == 0)
+				{
+					map[i][j] = (map[i][j - 1] + map[i][j + 1] + map[i + 1][j]) / 3;
+				}
+				else if (i == map[0].length - 1)
+				{
+					map[i][j] = (map[i][j - 1] + map[i - 1][j] + map[i][j + 1]) / 3;
+				}
+				else if(j == 0)
+				{
+					map[i][j] = (map[i - 1][j] + map[i][j + 1] + map[i + 1][j]) / 3;
+				}
+				else if(j == map[0].length - 1)
+				{
+					map[i][j] = (map[i][j - 1] + map[i - 1][j] + map[i + 1][j]) / 3;
+				}
+				else
+				{
+					int numWater = 0;
+					for(int x = -1; x < 2; x++)
+					{
+						for(int y = -1; y < 2; y++)
+						{
+							if(map[i + x][j + y] < World.WATERLEVEL) numWater++;
+						}
+					}
+					if(numWater > 4 && map[i][j] > World.WATERLEVEL) map[i][j] = World.WATERLEVEL;
+					if(numWater < 3 && map[i][j] < World.WATERLEVEL) map[i][j] = World.WATERLEVEL + 1;
+				}
+			}
+		}
+		
+		//map = heightBump(map);
+		
+		return map;
+	}
+	
+	private int[][] heightBump(int[][] map)
+	{
+		for(int i = 0; i < map.length - 1; i++)
+		{
+			for(int j = 0; j < map[0].length - 1; j++)
+			{
+				if(map[i][j] % 10 >= 5) map[i][j] = map[i][j] + (10 - map[i][j] % 10);
+				else map[i][j] = map[i][j] - (map[i][j] % 10);
 			}
 		}
 		

@@ -5,14 +5,15 @@ import world.gen.WorldGenerator;
 
 public class World
 {
+
+	public static int WATERLEVEL = 35;
 	
 	TileMap tilemap;
 	WorldGenerator worldGen;
 	
-	
 	public World()
 	{
-		tilemap = new TileMap(15);
+		tilemap = new TileMap(8);
 		worldGen = new WorldGenerator();
 	}
 	
@@ -23,7 +24,7 @@ public class World
 	
 	public void generateMap()
 	{
-		tilemap.setTiles(worldGen.generateMap(2));
+		tilemap.setTiles(worldGen.generateMap(3));
 	}
 
 	
