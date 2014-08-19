@@ -1,4 +1,4 @@
-package world;
+package fort.world;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Color;
@@ -48,7 +48,7 @@ public class TileMap
 				{
 					tiles[i][j] = new Tile(Tile.GRAY, Tile.STONE);
 				}
-				*/
+				*/  
 			}
 		}
 	}
@@ -56,14 +56,20 @@ public class TileMap
 	public void render(Graphics g)
 	{
 		
-		for(float i = Window.X / TILESIZE; i < Window.WIDTH / TILESIZE; i+=1)
+		for(int i = 0; i < Window.WIDTH / TILESIZE; i++)
 		{
-			for(float j = Window.Y / TILESIZE; j < Window.HEIGHT / TILESIZE; j+=1)
+			for(int j = 0; j < Window.HEIGHT / TILESIZE; j++)
 			{
-				g.setColor(tiles[(int)i][(int)j].color);
-				g.fillRect((float) (i * TILESIZE) , (float) (j * TILESIZE)  , (float) (i * TILESIZE + TILESIZE) , (float) (j * TILESIZE + TILESIZE) );
+				if(Window.X / TILESIZE + i < tiles.length && Window.X / TILESIZE + i > 0)
+				{
+					if(Window.Y / TILESIZE + j < tiles.length && Window.Y / TILESIZE + j > 0)
+					{
+						tiles[(int)Window.X / TILESIZE + i][(int)Window.Y / TILESIZE + j].render(g,Window.X,Window.Y);
+					}
+				}
 			}
 		}
+		
 	}
 
 

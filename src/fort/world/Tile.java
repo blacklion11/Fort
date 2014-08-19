@@ -1,7 +1,8 @@
-package world;
+package fort.world;
 
 import java.awt.image.BufferedImage;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
 
 
 public class Tile
@@ -71,5 +72,9 @@ public class Tile
 	public BufferedImage getImage(){return this.image;}
 	
 
-
+	public void render(Graphics g, float x, float y)
+	{	
+		g.setColor(color);
+		g.fillRect(x, y, TileMap.TILESIZE, TileMap.TILESIZE);
+	}
 }

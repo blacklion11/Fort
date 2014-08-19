@@ -1,7 +1,7 @@
-package world;
+package fort.world;
 
 import org.newdawn.slick.Graphics;
-import world.gen.WorldGenerator;
+import fort.world.gen.WorldGenerator;
 
 public class World
 {

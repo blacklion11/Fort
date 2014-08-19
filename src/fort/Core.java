@@ -3,7 +3,7 @@ package fort;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import states.*;
+import fort.states.*;
 
 public class Core extends StateBasedGame
 {
@@ -23,8 +23,8 @@ public class Core extends StateBasedGame
 	
 	public void initStatesList(GameContainer gc)
 	{
-		gc.setMaximumLogicUpdateInterval(33);
-		gc.setTargetFrameRate(60);
+		gc.setMinimumLogicUpdateInterval(33);
+		gc.setTargetFrameRate(100);
 		gc.setAlwaysRender(true);
 		gc.setShowFPS(true);
 		gc.setVSync(true);

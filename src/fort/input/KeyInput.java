@@ -1,4 +1,4 @@
-package input;
+package fort.input;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
@@ -17,10 +17,10 @@ public class KeyInput
 	
 	public void update(GameContainer gc, StateBasedGame game, int delta)
 	{
-		if(input.isKeyDown(Input.KEY_LEFT))Window.X--;
-		if(input.isKeyDown(Input.KEY_RIGHT))Window.X++;
-		if(input.isKeyDown(Input.KEY_UP))Window.Y--;
-		if(input.isKeyDown(Input.KEY_DOWN))Window.Y++;
+		if(input.isKeyDown(Input.KEY_LEFT))Window.X -= 20;
+		if(input.isKeyDown(Input.KEY_RIGHT))Window.X += 20;
+		if(input.isKeyDown(Input.KEY_UP))Window.Y-= 20;
+		if(input.isKeyDown(Input.KEY_DOWN))Window.Y+= 20;
 		
 	}
 

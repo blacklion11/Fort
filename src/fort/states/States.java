@@ -1,4 +1,4 @@
-package states;
+package fort.states;
 
 
 public class States
