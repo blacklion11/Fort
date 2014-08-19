@@ -44,7 +44,7 @@ public class WorldGenerator
 		map[map.length - 1][map[0].length - 1] = Integer.parseInt(seed.substring(6,8));
 		
 		 map = fillHeight(map);
-		map = smooth(smooth(smooth(smooth(smooth(map)))));
+		map = smooth(map);
 		
 		
 		// Debug Array Contents
@@ -161,7 +161,7 @@ public class WorldGenerator
 	public int[][] smooth(int[][] map)
 	{
 		
-		//map = heightBump(map);
+		map = heightBump(map);
 		
 		for(int i = 0; i < map.length - 1; i++)
 		{
@@ -204,7 +204,7 @@ public class WorldGenerator
 			}
 		}
 		
-		//map = heightBump(map);
+		map = heightBump(map);
 		
 		return map;
 	}

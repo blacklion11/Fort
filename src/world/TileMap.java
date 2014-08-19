@@ -3,6 +3,8 @@ package world;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Color;
 
+import fort.Window;
+
 import java.util.Random;
 import java.util.ArrayList;
 
@@ -53,13 +55,14 @@ public class TileMap
 	
 	public void render(Graphics g)
 	{
-		for(int i = 0; i < tiles.length; i++)
+		
+		for(float i = Window.X / TILESIZE; i < Window.WIDTH / TILESIZE; i+=1)
 		{
-			for(int j = 0; j < tiles[0].length; j++)
+			for(float j = Window.Y / TILESIZE; j < Window.HEIGHT / TILESIZE; j+=1)
 			{
-				g.setColor(tiles[i][j].color);
-				g.fillRect((float)(i * TILESIZE), (float) (j * TILESIZE), (float) ((i*TILESIZE) + TILESIZE), (float) ((j*TILESIZE) + TILESIZE));
-			}	
+				g.setColor(tiles[(int)i][(int)j].color);
+				g.fillRect((float) (i * TILESIZE) , (float) (j * TILESIZE)  , (float) (i * TILESIZE + TILESIZE) , (float) (j * TILESIZE + TILESIZE) );
+			}
 		}
 	}
 

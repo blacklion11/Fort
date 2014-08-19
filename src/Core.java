@@ -1,3 +1,4 @@
+package fort;
 
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.GameContainer;
