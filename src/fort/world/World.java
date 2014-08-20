@@ -13,7 +13,7 @@ public class World
 	
 	public World()
 	{
-		tilemap = new TileMap(8);
+		tilemap = new TileMap(12);
 		worldGen = new WorldGenerator();
 	}
 	

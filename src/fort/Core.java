@@ -24,10 +24,10 @@ public class Core extends StateBasedGame
 	public void initStatesList(GameContainer gc)
 	{
 		gc.setMinimumLogicUpdateInterval(33);
-		gc.setTargetFrameRate(100);
+		gc.setTargetFrameRate(120);
 		gc.setAlwaysRender(true);
 		gc.setShowFPS(true);
-		gc.setVSync(true);
+		gc.setVSync(false);  // <---------------- option to sync the display with the vertical refresh
 		
 		this.addState(new GameState());
 		//this.addState(new StartMenuState());

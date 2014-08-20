@@ -30,7 +30,7 @@ public class GameState extends BasicGameState
 	
 	public void render(GameContainer gc, StateBasedGame game, Graphics g) throws SlickException
 	{
-		//world.render(g);
+		world.render(g);
 	}
 	
 	public int getID(){return States.GAME;}

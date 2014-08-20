@@ -64,7 +64,7 @@ public class TileMap
 				{
 					if(Window.Y / TILESIZE + j < tiles.length && Window.Y / TILESIZE + j > 0)
 					{
-						tiles[(int)Window.X / TILESIZE + i][(int)Window.Y / TILESIZE + j].render(g,Window.X,Window.Y);
+						tiles[(int)Window.X / TILESIZE + i][(int)Window.Y / TILESIZE + j].render(g,i * TILESIZE, j * TILESIZE );
 					}
 				}
 			}
