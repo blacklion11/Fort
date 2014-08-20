@@ -13,10 +13,12 @@ public class TileMap
 	public static int TILESIZE;
 
 	Tile[][] tiles;
+	Tile tileRef;
 	
 	public TileMap(int tilesize)
 	{
 		this.TILESIZE = tilesize;
+		tileRef = new Tile();
 	
 	}
 	
@@ -56,20 +58,34 @@ public class TileMap
 	public void render(Graphics g)
 	{
 		
-		for(int i = 0; i < Window.WIDTH / TILESIZE; i++)
+		for(int i = 0; i < tiles.length; i++)
 		{
-			for(int j = 0; j < Window.HEIGHT / TILESIZE; j++)
+			for(int j = 0; j < tiles[0].length; j++)
 			{
-				if(Window.X / TILESIZE + i < tiles.length && Window.X / TILESIZE + i > 0)
-				{
-					if(Window.Y / TILESIZE + j < tiles.length && Window.Y / TILESIZE + j > 0)
-					{
-						tiles[(int)Window.X / TILESIZE + i][(int)Window.Y / TILESIZE + j].render(g,i * TILESIZE, j * TILESIZE );
-					}
-				}
+				g.setColor(tiles[i][j].color);
+				g.fillRect(Window.X + j * TILESIZE, Window.Y + i * TILESIZE, TILESIZE, TILESIZE);
 			}
 		}
 		
+	}
+	
+	private void loadTileImages()
+	{
+		System.out.println(System.getProperty("user.dir"));
+		images = tileRef.getTileImages();
+		
+		try
+		{	
+			images.add(DIRT, ImageIO.read(new File("res/dirt.png")));
+			images.add(GRASS, ImageIO.read(new File("res/grass.png")));
+			images.add(WATER, ImageIO.read(new File("res/water.png")));
+		}catch(IOException e)
+		{
+			System.out.println("Error loading tile images");
+			e.printStackTrace();
+		}
+		
+		tileRef.setTileImages(images);
 	}
 
 
