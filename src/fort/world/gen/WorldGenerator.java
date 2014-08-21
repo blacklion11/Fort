@@ -30,7 +30,7 @@ public class WorldGenerator
 				map = new int[65][65];
 				break;
 			case 3:
-				map = new int[129][129];
+				map = new int[1025][1025];
 				break;
 		}
 		

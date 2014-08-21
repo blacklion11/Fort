@@ -1,29 +1,46 @@
 package fort.world;
 
-import java.awt.image.BufferedImage;
-import javax.imageio.ImageIO;
-import java.io.File;
-import java.io.IOException;
+
+import java.util.ArrayList;
+
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 public class Tileset
 {
-
-	BufferedImage tilesetImage;
 	
-	BufferedImage[][] tileImages;
 	
-	public Tileset(String filepath)
+	ArrayList<Image> images;
+	
+	
+	
+	public Tileset()
 	{
-		try
-		{
-			tilesetImage = ImageIO.read(new File(filepath));
-		}catch(IOException e)
-		{
-			System.out.println("Error Loading Tileset");
-			e.printStackTrace();
-		}
+		loadTileImages();
+	}
+	
+	private void loadTileset()
+	{
 	
 	}
+	
+	private void loadTileImages()
+	{
+		images = new ArrayList<Image>();
+		try
+		{	
+			images.add(Tile.BLANK, new Image("res/black.png"));
+			images.add(Tile.DIRT, new Image("res/dirt.png"));
+			images.add(Tile.GRASS, new Image("res/grass.png"));
+			images.add(Tile.WATER, new Image("res/water.png"));
+		}catch(SlickException e)
+		{
+			System.out.println("Error loading tile images");
+			e.printStackTrace();
+		}
+	}
 
+	
+	public ArrayList<Image> getTileImages(){return this.images;}
 	
 }
